@@ -1,7 +1,13 @@
+"use client";
 import Image from 'next/image'
 import styles from './page.module.css'
+import { useEffect } from 'react'
+import Xenon from 'xenon-view-sdk';
 
 export default function Home() {
+  useEffect(() => {
+    Xenon.init("");
+  }, []);
   return (
     <main className={styles.main}>
       <div className={styles.description}>
