@@ -3,10 +3,21 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import { useEffect } from 'react'
 import Xenon from 'xenon-view-sdk';
-
+// import Xenon from 'xenon-view-sdk';
+const XENON_API_KEY = process.env.NEXT_PUBLIC_XENON_API_KEY as string;
 export default function Home() {
   useEffect(() => {
-    Xenon.init("");
+    console.log("xenon client side loading...");
+    Xenon.init(XENON_API_KEY);
+    Xenon.accountSignup("kjsdfkjhaslkdfjhss");
+    Xenon.commit();
+    console.log("xenon client side done");
+    console.log("sending request to server side");
+    (async () => {
+      fetch("/api/hello").then((() => {
+        console.log("xenon on the server side should have started loading")
+      }))
+    })()
   }, []);
   return (
     <main className={styles.main}>
